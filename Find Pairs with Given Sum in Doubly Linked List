@@ -1,0 +1,24 @@
+ public List<List<Integer>> findPairsWithGivenSum(ListNode head, int target) {
+        ListNode left = head;
+        ListNode right = head;
+        List<List<Integer>> arr = new ArrayList<>();
+        while(right.next!=null){
+            right = right.next;
+        }
+
+        while(right.val > left.val){
+
+            if(left.val + right.val > target){
+                right = right.prev;
+            }
+            else if(left.val+right.val < target){
+                left = left.next;
+            }
+            else{
+                arr.add(List.of(left.val, right.val));
+                left = left.next;
+                right = right.prev;
+            }
+        }
+        return arr;
+    }
